@@ -1,0 +1,10 @@
+{
+  "name": "crdt-kanban",
+  "version": "1.0.0",
+  "private": true,
+  "description": "多标签页实时协同看板：BroadcastChannel + IndexedDB + Pointer Events + CRDT",
+  "scripts": {
+    "start": "python3 -m http.server 8000",
+    "test": "node test/crdt.test.js && node test/sync.test.js"
+  }
+}

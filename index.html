@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CRDT 实时协同看板</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="app-header">
+    <div class="brand">
+      <h1>CRDT 协同看板</h1>
+      <span class="sub">BroadcastChannel + IndexedDB + Pointer Events + CRDT</span>
+    </div>
+    <div class="status">
+      <span class="stat">节点 <code id="node-id">…</code></span>
+      <span class="stat">在线标签页 <b id="peer-count">1</b></span>
+      <span class="stat">同步延迟 <b id="latency">—</b></span>
+      <span id="net-state" class="ok">在线</span>
+    </div>
+    <div class="actions">
+      <button id="btn-new-tab">打开新标签页</button>
+      <button id="btn-offline">模拟离线</button>
+      <button id="btn-clear" class="danger">清空数据</button>
+    </div>
+  </header>
+
+  <main class="board">
+    <section class="column" data-col="todo">
+      <header class="col-header">
+        <h2>待办</h2>
+        <span class="col-count" data-col="todo">0</span>
+      </header>
+      <div class="card-list" data-col="todo"></div>
+      <button class="btn-add" data-col="todo">+ 添加卡片</button>
+    </section>
+    <section class="column" data-col="doing">
+      <header class="col-header">
+        <h2>进行中</h2>
+        <span class="col-count" data-col="doing">0</span>
+      </header>
+      <div class="card-list" data-col="doing"></div>
+      <button class="btn-add" data-col="doing">+ 添加卡片</button>
+    </section>
+    <section class="column" data-col="done">
+      <header class="col-header">
+        <h2>已完成</h2>
+        <span class="col-count" data-col="done">0</span>
+      </header>
+      <div class="card-list" data-col="done"></div>
+      <button class="btn-add" data-col="done">+ 添加卡片</button>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    拖拽排序 / 跨列移动 · 双击编辑 · × 删除 · 多标签页实时同步 · 离线可用，恢复自动合并
+  </footer>
+
+  <script src="js/hlc.js"></script>
+  <script src="js/logoot.js"></script>
+  <script src="js/crdt-store.js"></script>
+  <script src="js/db.js"></script>
+  <script src="js/sync.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

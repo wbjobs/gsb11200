@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CRDT 协同看板</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="app-header">
+    <h1>协同看板</h1>
+    <div class="status">
+      <span id="presence" class="badge">标签页: 1</span>
+      <span id="net-status" class="badge online">在线</span>
+      <span id="tab-id" class="badge tab-id"></span>
+      <button id="toggle-offline" type="button">模拟离线</button>
+      <button id="resync" type="button">重新同步</button>
+    </div>
+  </header>
+
+  <main id="board" class="board">
+    <section class="column" data-column="todo">
+      <header class="column-header"><h2>待办</h2><span class="count">0</span></header>
+      <div class="card-list" data-column="todo"></div>
+      <button class="add-card" data-column="todo" type="button">＋ 添加卡片</button>
+    </section>
+    <section class="column" data-column="doing">
+      <header class="column-header"><h2>进行中</h2><span class="count">0</span></header>
+      <div class="card-list" data-column="doing"></div>
+      <button class="add-card" data-column="doing" type="button">＋ 添加卡片</button>
+    </section>
+    <section class="column" data-column="done">
+      <header class="column-header"><h2>已完成</h2><span class="count">0</span></header>
+      <div class="card-list" data-column="done"></div>
+      <button class="add-card" data-column="done" type="button">＋ 添加卡片</button>
+    </section>
+  </main>
+
+  <div id="modal" class="modal-overlay" hidden>
+    <form id="card-form" class="modal">
+      <h3 id="modal-title">新建卡片</h3>
+      <label>标题
+        <input id="field-title" required maxlength="80" autocomplete="off">
+      </label>
+      <label>描述
+        <textarea id="field-desc" rows="3" maxlength="500"></textarea>
+      </label>
+      <div class="modal-actions">
+        <button type="button" id="modal-cancel">取消</button>
+        <button type="submit" class="primary">保存</button>
+      </div>
+    </form>
+  </div>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
